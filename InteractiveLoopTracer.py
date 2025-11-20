@@ -20,14 +20,16 @@ import time
 import tkinter as tk
 
 class InteractiveLoopTracer:
-    def __init__(self, image_data):
+    def __init__(self, image_data, x_grid, y_grid):
         self.image_data = image_data
-        self.fig, self.ax = plt.subplots(figsize=(6, 6))
+        self.x_grid = x_grid
+        self.y_grid = y_grid
+        self.fig, self.ax = plt.subplots(figsize=(4, 6))
         # Добавил нормализацию картинки, чтобы можно было разобрать петлю в нужном канале
-        self.img = self.ax.imshow(self.image_data, origin='lower',
+        self.img = self.ax.pcolormesh(self.x_grid, self.y_grid, self.image_data, #origin='lower',
                                   norm=ImageNormalize(stretch=AsinhStretch()), cmap=f'sdoaia131')
-        self.img.set_clim(vmin=np.percentile(image_data, 1),
-                          vmax=np.percentile(image_data, 99))
+        # self.img.set_clim(vmin=np.percentile(image_data, 1),
+        #                   vmax=np.percentile(image_data, 99))
 
         self.points = []
         self.point_artists = []
