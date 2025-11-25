@@ -1,8 +1,8 @@
 from InteractiveLoopTracer import *
 
 class WideLoop(InteractiveLoopTracer):
-    def __init__(self, image_data):
-        super().__init__(image_data)
+    def __init__(self, image_data, x_grid, y_grid):
+        super().__init__(image_data, x_grid, y_grid)
         
         self.line_artists = []  
         
